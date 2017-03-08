@@ -1,7 +1,6 @@
-function [theta, J_hist, minJ] = gradientDescent(X,y,theta,alpha,nit)
+function [theta, J_hist] = gradientDescent(X,y,theta,alpha,nit)
   m = size(y,1);
   J_hist = zeros(nit, 1);
-  minJ = 0;
   for n=1:nit
      S = [0;0];
      S1 = 0;
@@ -13,9 +12,6 @@ function [theta, J_hist, minJ] = gradientDescent(X,y,theta,alpha,nit)
      S = [S1;S2];
      theta = theta - alpha/m*S;
      J = ComputeCostFunction(X,y, theta);
-     if J < minJ || minJ == 0
-       minJ = J;
-     end
      J_hist(n) = J;
   end
 endfunction
